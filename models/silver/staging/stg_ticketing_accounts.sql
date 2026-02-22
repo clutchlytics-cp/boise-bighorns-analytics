@@ -10,6 +10,10 @@ select
   cast(last_name as string)       as last_name,
   cast(email as string)           as email,
 
+  -- identity standardization (MVP)
+  nullif(lower(trim(cast(email as string))),'') as email_norm,
+  cast(customer_num as string)       as source_account_id,
+
   cast(city as string)            as city,
   cast(state as string)           as state,
   cast(zip as string)             as zip,   -- store zip as string to preserve leading zeros
