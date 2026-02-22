@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: bronze
-    database: "{{ env_var('DBT_BQ_PROJECT') }}"
+    database: "{{ env_var('DBT_BQ_PROJECT', 'YOUR_GCP_PROJECT_ID') }}"
     schema: bronze
     tables:
       - name: date_mapping

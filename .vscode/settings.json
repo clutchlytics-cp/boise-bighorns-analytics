@@ -1,0 +1,28 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "pinseeker",
+            "database": "pinseeker",
+            "username": "root",
+            "askForPassword": true
+        },
+        {
+            "name": "BigQuery",
+            "authenticator": "CLI",
+            "location": "us-south1",
+            "previewLimit": 50,
+            "driver": "BigQuery",
+            "projectId": "boise-bighorns"
+        }
+    ]
+}
