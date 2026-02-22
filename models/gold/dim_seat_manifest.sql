@@ -50,9 +50,9 @@ final as (
 
     -- Business bucketing
     case
-      when is_suite then 'SUITE'
-      when is_club then 'PREMIUM'
-      when is_ada  then 'ADA'
+      when is_suite = 1 then 'SUITE'
+      when is_club = 1 then 'PREMIUM'
+      when is_ada = 1 then 'ADA'
       else 'GENERAL'
     end as inventory_bucket,
 
@@ -62,15 +62,15 @@ final as (
     is_suite,
 
     case
-      when is_suite then true
-      when is_club then true
-      else false
+      when is_suite = 1 then 1
+      when is_club =1 then 1
+      else 0
     end as is_premium_seat,
 
     -- “Policy” flag (adjust later if you decide ADA should be eligible)
     case
-      when is_suite then false
-      else true
+      when is_suite = 0 then 0
+      else 1
     end as is_discount_eligible,
 
     -- Pricing

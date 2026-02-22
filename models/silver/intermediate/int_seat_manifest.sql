@@ -114,15 +114,15 @@ keys as (
       when seat_type = 'ADA'
         or seat_inventory_group = 'ADA'
         or starts_with(section, 'ADA')
-      then true else false
+      then 1 else 0
     end as is_ada,
 
     case when zone = 'CLUB' or seat_inventory_group = 'CLUB' or seat_type = 'CLUB'
-      then true else false
+      then 1 else 0
     end as is_club,
 
     case when zone = 'SUITE' or seat_inventory_group = 'SUITE' or seat_type = 'SUITE'
-      then true else false
+      then 1 else 0
     end as is_suite,
 
     -- QA signal: does supplied seat_key match our canonical key (when supplied)?
