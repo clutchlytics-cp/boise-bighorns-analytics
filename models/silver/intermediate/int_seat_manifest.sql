@@ -3,7 +3,7 @@
 --   Normalize seat manifest records into a single, deduped, analytics-ready “silver” model.
 --   No SCD logic (current-state only).
 
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
 with src as (
 
