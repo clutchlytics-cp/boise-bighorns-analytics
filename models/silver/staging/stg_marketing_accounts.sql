@@ -10,7 +10,7 @@ with src as (
 
     cast(fn as string)                   as first_name,
     cast(ln as string)                   as last_name,
-    cast(email as string)                as email,
+    nullif(lower(trim(cast(email as string))),'')   as email_norm,
 
     cast(_geo_bucket as string)          as geo_bucket,
     cast(city as string)                 as city,
@@ -35,7 +35,7 @@ final as (
 
     s.first_name,
     s.last_name,
-    s.email,
+    s.email_norm,
 
     s.geo_bucket,
     s.city,

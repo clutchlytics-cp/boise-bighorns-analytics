@@ -9,7 +9,7 @@ with src as (
 
     cast(first_name as string)      as first_name,
     cast(last_name as string)       as last_name,
-    cast(email as string)           as email,
+    nullif(lower(trim(cast(email as string))),'')   as email_norm,
 
     cast(city as string)            as city,
     cast(state as string)           as state,
@@ -29,7 +29,7 @@ final as (
 
     s.first_name,
     s.last_name,
-    s.email,
+    s.email_norm,
     s.city,
     s.state,
     s.zip,
