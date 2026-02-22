@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: "{{ env_var('DBT_BQ_PROJECT') }}"
+    schema: bronze
+    tables:
+      - name: date_mapping
+      - name: esp_email_campaigns
+      - name: esp_email_engagement
+      - name: marketing_accounts
+      - name: marketing_landing_page_sessions
+      - name: pos_products
+      - name: pos_transactions
+      - name: seat_manifest_ada
+      - name: seat_manifest_club
+      - name: seat_manifest_lower
+      - name: seat_manifest_upper
+      - name: ticketing_accounts
+      - name: ticketing_events
+      - name: ticketing_order_items
+      - name: ticketing_orders
