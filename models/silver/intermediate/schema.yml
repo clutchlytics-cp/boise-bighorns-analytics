@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: int_identity_candidates
+    description: >
+      Unioned identity candidates from ticketing and marketing staging models.
+      Provides a standardized grain for customer identity stitching using email_norm.
+    columns:
+      - name: source_system
+        description: "Origin system for the account record (marketing or ticketing)."
+        tests: [not_null]
+
+      - name: source_account_id
+        description: "Account identifier in the origin system, cast to string."
+        tests: [not_null]
+
+      - name: created_dt
+        description: "Account created date from the source system (standardized to DATE)."
+
+      - name: email_norm
+        description: "Normalized email used for identity matching (lowercase + trimmed)."
+        tests: [not_null]
+
+      - name: first_name
+        description: "First name from the source system."
+
+      - name: last_name
+        description: "Last name from the source system."
+
+      - name: city
+        description: "City from the source system."
+
+      - name: state
+        description: "State from the source system."
+
+      - name: zip
+        description: "ZIP code from the source system (stored as string)."
+
+  - name: customer_mapping_identity
+    description: >
+      Incremental identity bridge that assigns a stable integer bighorn_id to each email_norm
+      and maps each source account (ticketing/marketing) to that bighorn_id.
+    columns:
+      - name: bighorn_id
+        description: "Stable surrogate key for a customer (enterprise ID)."
+        tests: [not_null]
+
+      - name: source_system
+        description: "Origin system for the source account (marketing or ticketing)."
+        tests: [not_null]
+
+      - name: source_account_id
+        description: "Account identifier in the origin system."
+        tests: [not_null]
+
+      - name: email_norm
+        description: "Normalized email used for identity stitching."
+        tests: [not_null]
+
+      - name: first_seen_dt
+        description: "First date we observed this source account."
+
+      - name: last_seen_dt
+        description: "Most recent date we observed this source account."
+
+      - name: first_name
+        description: "First name from the source system."
+
+      - name: last_name
+        description: "Last name from the source system."
+
+      - name: city
+        description: "City from the source system."
+
+      - name: state
+        description: "State from the source system."
+
+      - name: zip
+        description: "ZIP code from the source system (stored as string)."
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_system
+              - source_account_id

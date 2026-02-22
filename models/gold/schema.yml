@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: >
+      Gold customer dimension at the bighorn_id grain. Canonical customer attributes rolled up
+      from identity-mapped source accounts (ticketing + marketing).
+    columns:
+      - name: bighorn_id
+        description: "Primary key for the customer dimension."
+        tests: [not_null, unique]
+
+      - name: email_norm
+        description: "Normalized email (canonical)."
+        tests: [not_null]
+
+      - name: first_seen_dt
+        description: "Earliest date observed across linked source accounts."
+        tests: [not_null]
+
+      - name: last_seen_dt
+        description: "Most recent date observed across linked source accounts."
+        tests: [not_null]
