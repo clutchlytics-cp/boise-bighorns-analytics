@@ -13,6 +13,10 @@ select
   cast(ln as string)                   as last_name,
   cast(email as string)                as email,
 
+  -- identity standardization (MVP)
+  nullif(lower(trim(cast(email as string))),'')   as email_norm,
+  cast(marketing_id as string)         as source_account_id,
+
   cast(_geo_bucket as string)          as geo_bucket,
   cast(city as string)                 as city,
   cast(state as string)                as state,
