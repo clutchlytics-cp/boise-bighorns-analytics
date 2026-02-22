@@ -7,6 +7,8 @@ with marketing as (
     cast(marketing_id as string) as source_account_id,
     created_dt,
     email_norm,
+    first_name,
+    last_name,
     city,
     state,
     zip
@@ -22,6 +24,8 @@ ticketing as (
     cast(customer_num as string) as source_account_id,
     created_dt,
     email_norm,
+    first_name,
+    last_name,
     city,
     state,
     zip
