@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_identity_candidates
+    description: >
+      Unioned identity candidates from ticketing and marketing staging models.
+      Provides a standardized grain for customer identity stitching using email_norm.
+    columns:
+      - name: source_system
+        description: "Origin system for the account record (marketing or ticketing)."
+        tests: [not_null]
+      - name: source_account_id
+        description: "Account identifier in the origin system, cast to string."
+        tests: [not_null]
+      - name: email_norm
+        description: "Normalized email used for identity matching."
+        tests: [not_null]
